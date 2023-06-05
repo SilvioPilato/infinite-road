@@ -23,7 +23,7 @@ const noise = new FBM({
 });
 
 
-export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed = 5}: TerrainProps){
+export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed = 1}: TerrainProps){
     const geometryRefs = useRef<(BufferGeometry | null)[] >([]);
     const meshRefs = useRef<(Mesh | null)[] >([]);
 
@@ -39,7 +39,7 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
             const slope = 2;
             const maxHeight = 4
             const corridorWidth = 1;
-            for (let y = startingY; y < rows + startingY; y++) {
+            for (let y = 0; y < rows; y++) {
                 for (let x = 0; x < cols; x++) {
                     positions.push(
                         // right triangle
@@ -96,7 +96,8 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
             const y = meshRefs.current[i]?.position.y;
             if (y == undefined) return;
             if (y <= - rows * cellSize) {
-                meshRefs.current[i]?.position.setY(rows * cellSize * (chunks));
+                console.log(rows * cellSize * (chunks -1));
+                meshRefs.current[i]?.position.setY(rows * cellSize * (chunks -1));
             }
         }
     })
@@ -105,12 +106,12 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
         <group>
             {
                 new Array(chunks).fill(chunks).map((_, i) => {
-                    const color = (i % 2 == 0) ? "#FF019A" : "#171717";
+                    console.log(rows * cellSize * i)
                     return (
                         <mesh ref={(el) => meshRefs.current[i] = el} key={i} position={[0,(rows * cellSize * i),0]}>
                             <meshStandardMaterial 
                                 attach={"material"} 
-                                color={color} 
+                                color={"#171717"} 
                                 emissive={"#8C1EFF"}
                                 emissiveIntensity={0.05}
                                 metalness={0.2}
