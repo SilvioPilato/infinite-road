@@ -26,6 +26,9 @@ const noise = new FBM({
 export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed = 1}: TerrainProps){
     const geometryRefs = useRef<(BufferGeometry | null)[] >([]);
     const meshRefs = useRef<(Mesh | null)[] >([]);
+    const slope = 1.2;
+    const maxHeight = 4
+    const corridorWidth = 8;
 
     const getZValue = (x: number, y: number) => {
         return (noise.get2(new Vector2(x, y)) + 1) / 2;
@@ -36,9 +39,7 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
             const positions = [];
             const offsetX = - (cols * cellSize) / 2;
             const offsetY = - (rows * cellSize) / 2;
-            const slope = 2;
-            const maxHeight = 4
-            const corridorWidth = 1;
+
             for (let y = 0; y < rows; y++) {
                 for (let x = 0; x < cols; x++) {
                     positions.push(
@@ -114,8 +115,11 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
                                 color={"#171717"} 
                                 emissive={"#8C1EFF"}
                                 emissiveIntensity={0.05}
+                                opacity={1.0}
                                 metalness={0.2}
                                 roughness={0.7}
+                                flatShading={true}
+                                transparent={false}
                                 />
                             <bufferGeometry ref={(el) => geometryRefs.current[i] = el} attach={"geometry"}>
                                 <bufferAttribute attach="attributes-position" {...points(i * rows)}/>
