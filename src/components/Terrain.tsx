@@ -120,7 +120,7 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
                             <bufferGeometry ref={(el) => geometryRefs.current[i] = el} attach={"geometry"}>
                                 <bufferAttribute attach="attributes-position" {...points(i * rows)}/>
                             </bufferGeometry>
-                            <Wireframe vertexColors={true} simplify stroke={"#FF019A"} thickness={0.15} />
+                            <Wireframe simplify stroke={"#ff02d4"} thickness={0.12} />
                         </mesh>
                     )
                 } )
