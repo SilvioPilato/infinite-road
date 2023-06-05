@@ -1,13 +1,16 @@
 import './App.css'
 import { Canvas } from '@react-three/fiber';
 import Terrain from './components/Terrain';
+import { Stars } from '@react-three/drei';
 
 function App() {
 
   return (
-    <Canvas>
+    <Canvas camera={{fov: 70, rotation: [0, 0 ,0], position: [0,0,50]}}>
+      <Stars />
       <color attach="background" args={['#000']} />
-      <Terrain rows={50} cols={50} cellSize={.5}/> 
+      <hemisphereLight position={[10, 10, 10]} />
+      <Terrain rows={5} cols={5} cellSize={1} chunks={2}/> 
     </Canvas>
   )
 }
