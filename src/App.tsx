@@ -12,11 +12,11 @@ function App() {
       <Sphere position={[0,90, 10]} scale={[35, 35, 35]}>
         <meshBasicMaterial attach="material" color="orange"/>
       </Sphere>
-      <color attach="background" args={['#000']} />
+      <color attach="background" args={['#19093f']} />
       <hemisphereLight position={[10, 0, 10]} />
       <Terrain rows={100} cols={20} cellSize={0.5} chunks={4}/> 
       <EffectComposer>
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} intensity={1.5}/>
+        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} intensity={1.8}/>
       </EffectComposer>
     </Canvas>
   )
