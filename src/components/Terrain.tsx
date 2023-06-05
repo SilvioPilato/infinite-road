@@ -108,12 +108,12 @@ export default function Terrain({rows, cols, cellSize = 1, chunks = 2, moveSpeed
                 new Array(chunks).fill(chunks).map((_, i) => {
                     return (
                         <mesh ref={(el) => meshRefs.current[i] = el} key={i} position={[0,(rows * cellSize * i),0]}>
-                            <meshStandardMaterial 
+                            <meshStandardMaterial
+                                
                                 attach={"material"} 
                                 color={"#171717"} 
                                 emissive={"#8C1EFF"}
                                 emissiveIntensity={0.05}
-                                transparent={false}
                                 metalness={0.2}
                                 roughness={0.7}
                                 />
